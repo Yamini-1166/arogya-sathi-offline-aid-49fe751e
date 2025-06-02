@@ -33,7 +33,7 @@ const Index = () => {
         setCurrentLanguage={setCurrentLanguage}
         isOffline={isOffline}
       />
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-2 sm:px-4 py-4 sm:py-6 max-w-7xl">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/patients" element={<PatientTracker />} />
