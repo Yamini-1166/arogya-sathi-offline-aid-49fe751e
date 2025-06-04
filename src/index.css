@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -98,44 +97,5 @@
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
   }
-}
-
-/* Custom responsive utilities */
-@layer utilities {
-  .text-responsive {
-    @apply text-sm sm:text-base lg:text-lg;
-  }
-  
-  .button-responsive {
-    @apply px-3 py-2 text-sm sm:px-4 sm:py-2 sm:text-base;
-  }
-  
-  .card-responsive {
-    @apply p-3 sm:p-4 lg:p-6;
-  }
-}
-
-/* Smooth scrolling and better touch targets */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Ensure minimum touch target size on mobile */
-@media (max-width: 768px) {
-  button, a, input, select, textarea {
-    min-height: 44px;
-    min-width: 44px;
-  }
-}
-
-/* Improved focus states for accessibility */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
 }
