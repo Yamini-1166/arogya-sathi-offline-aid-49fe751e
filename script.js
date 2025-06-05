@@ -1,4 +1,3 @@
-
 // Global state management
 const AppState = {
     currentPage: 'dashboard',
@@ -105,6 +104,27 @@ function setupEventListeners() {
         });
     }
     
+    // Education search
+    const educationSearch = document.getElementById('educationSearch');
+    if (educationSearch) {
+        educationSearch.addEventListener('input', function() {
+            filterEducationTopics(this.value);
+        });
+    }
+    
+    // Education filter buttons
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const category = this.dataset.category;
+            filterEducationByCategory(category);
+            
+            // Update active filter button
+            filterButtons.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
     // Keyboard shortcuts
     document.addEventListener('keydown', function(e) {
         if (e.ctrlKey || e.metaKey) {
@@ -187,6 +207,9 @@ function loadPageContent(pageId) {
             break;
         case 'appointments':
             loadAppointments();
+            break;
+        case 'education':
+            loadEducationContent();
             break;
         default:
             console.log(`No specific content loader for: ${pageId}`);
@@ -317,6 +340,73 @@ function logEmergencyCall(number, service) {
     localStorage.setItem('emergencyLogs', JSON.stringify(logs));
 }
 
+// First Aid functions
+function showFirstAidGuide(type) {
+    const guides = {
+        'cpr': 'CPR Guide: Check consciousness, call for help, chest compressions 30:2 ratio',
+        'bleeding': 'Bleeding Control: Apply direct pressure, elevate if possible, use clean cloth',
+        'choking': 'Choking: Back blows, abdominal thrusts (Heimlich maneuver)',
+        'burns': 'Burns: Cool running water for 20 minutes, remove jewelry, cover with clean cloth',
+        'fractures': 'Fractures: Immobilize, support, do not move unless necessary',
+        'unconscious': 'Unconsciousness: Check breathing, recovery position, monitor vitals'
+    };
+    
+    const guide = guides[type] || 'Guide not available';
+    alert(`${type.toUpperCase()} GUIDE:\n\n${guide}`);
+    showNotification(`Opened ${type} guide`, 'info');
+}
+
+// Education functions
+function loadEducationContent() {
+    console.log('Loading education content...');
+}
+
+function filterEducationTopics(searchTerm) {
+    const topicCards = document.querySelectorAll('.topic-card');
+    topicCards.forEach(card => {
+        const title = card.querySelector('h4').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm.toLowerCase()) || 
+            description.includes(searchTerm.toLowerCase())) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function filterEducationByCategory(category) {
+    const topicCards = document.querySelectorAll('.topic-card');
+    topicCards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function openEducationTopic(topic) {
+    const topics = {
+        'hand-hygiene': 'Hand Hygiene: Wash hands with soap for 20 seconds, use sanitizer when soap unavailable',
+        'maternal-health': 'Maternal Health: Regular checkups, proper nutrition, avoid harmful substances',
+        'vaccination': 'Vaccination: Follow immunization schedule, keep records updated',
+        'nutrition': 'Nutrition: Balanced diet, include fruits and vegetables, adequate protein',
+        'wash': 'WASH: Safe water storage, proper sanitation, waste management',
+        'mental-health': 'Mental Health: Stress management, social support, seek help when needed'
+    };
+    
+    const content = topics[topic] || 'Educational content not available';
+    alert(`${topic.toUpperCase()}:\n\n${content}`);
+    showNotification(`Opened ${topic} topic`, 'info');
+}
+
+function joinCampaign(campaign) {
+    showNotification(`Joined ${campaign} campaign!`, 'success');
+    console.log(`User joined campaign: ${campaign}`);
+}
+
 // Dashboard functions
 function updateDashboardStats() {
     // Update stats with real data
@@ -334,6 +424,22 @@ function updateDashboardStats() {
 function loadAppointments() {
     console.log('Loading appointments...');
     // In a real app, this would fetch appointments from a server
+}
+
+// Appointment functions
+function scheduleAppointment() {
+    showNotification('Schedule appointment form opened', 'info');
+    console.log('Opening schedule appointment form...');
+}
+
+function completeAppointment(appointmentId) {
+    showNotification(`Appointment ${appointmentId} marked as completed`, 'success');
+    console.log('Completed appointment ID:', appointmentId);
+}
+
+function rescheduleAppointment(appointmentId) {
+    showNotification(`Rescheduling appointment ${appointmentId}`, 'info');
+    console.log('Rescheduling appointment ID:', appointmentId);
 }
 
 // Utility functions
@@ -513,5 +619,11 @@ window.showAddPatientForm = showAddPatientForm;
 window.viewPatientDetails = viewPatientDetails;
 window.addPatientVisit = addPatientVisit;
 window.callPatient = callPatient;
+window.showFirstAidGuide = showFirstAidGuide;
+window.openEducationTopic = openEducationTopic;
+window.joinCampaign = joinCampaign;
+window.scheduleAppointment = scheduleAppointment;
+window.completeAppointment = completeAppointment;
+window.rescheduleAppointment = rescheduleAppointment;
 
 console.log('Grama Arogya Sathi - Script loaded successfully! 🎉');

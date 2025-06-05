@@ -303,9 +303,47 @@
                             <p>📅 Last visit: 30/05/2024</p>
                         </div>
                         <div class="patient-actions">
-                            <button class="btn-secondary">View Details</button>
-                            <button class="btn-secondary">Add Visit</button>
-                            <button class="btn-secondary">Call</button>
+                            <button class="btn-secondary" onclick="viewPatientDetails(1)">View Details</button>
+                            <button class="btn-secondary" onclick="addPatientVisit(1)">Add Visit</button>
+                            <button class="btn-secondary" onclick="callPatient('+91 9876543210')">Call</button>
+                        </div>
+                    </div>
+                    <div class="patient-card">
+                        <div class="patient-header">
+                            <div>
+                                <h4>Ram Kumar</h4>
+                                <p>45 years • Male • Shyampur</p>
+                            </div>
+                            <span class="status-badge scheduled">Follow-up</span>
+                        </div>
+                        <div class="patient-details">
+                            <p>📞 +91 9876543211</p>
+                            <p>📄 Diabetes</p>
+                            <p>📅 Last visit: 28/05/2024</p>
+                        </div>
+                        <div class="patient-actions">
+                            <button class="btn-secondary" onclick="viewPatientDetails(2)">View Details</button>
+                            <button class="btn-secondary" onclick="addPatientVisit(2)">Add Visit</button>
+                            <button class="btn-secondary" onclick="callPatient('+91 9876543211')">Call</button>
+                        </div>
+                    </div>
+                    <div class="patient-card">
+                        <div class="patient-header">
+                            <div>
+                                <h4>Meera Sharma</h4>
+                                <p>28 years • Female • Rampur</p>
+                            </div>
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                        <div class="patient-details">
+                            <p>📞 +91 9876543212</p>
+                            <p>📄 Vaccination</p>
+                            <p>📅 Last visit: 25/05/2024</p>
+                        </div>
+                        <div class="patient-actions">
+                            <button class="btn-secondary" onclick="viewPatientDetails(3)">View Details</button>
+                            <button class="btn-secondary" onclick="addPatientVisit(3)">Add Visit</button>
+                            <button class="btn-secondary" onclick="callPatient('+91 9876543212')">Call</button>
                         </div>
                     </div>
                 </div>
@@ -322,13 +360,37 @@
                         <div class="first-aid-icon">❤️</div>
                         <h3>CPR</h3>
                         <p>Cardiopulmonary Resuscitation</p>
-                        <button class="btn-primary">View Guide</button>
+                        <button class="btn-primary" onclick="showFirstAidGuide('cpr')">View Guide</button>
                     </div>
                     <div class="first-aid-card">
                         <div class="first-aid-icon">🩸</div>
                         <h3>Bleeding Control</h3>
                         <p>Stop severe bleeding</p>
-                        <button class="btn-primary">View Guide</button>
+                        <button class="btn-primary" onclick="showFirstAidGuide('bleeding')">View Guide</button>
+                    </div>
+                    <div class="first-aid-card">
+                        <div class="first-aid-icon">🫁</div>
+                        <h3>Choking</h3>
+                        <p>Heimlich Maneuver</p>
+                        <button class="btn-primary" onclick="showFirstAidGuide('choking')">View Guide</button>
+                    </div>
+                    <div class="first-aid-card">
+                        <div class="first-aid-icon">🔥</div>
+                        <h3>Burns</h3>
+                        <p>Burn treatment</p>
+                        <button class="btn-primary" onclick="showFirstAidGuide('burns')">View Guide</button>
+                    </div>
+                    <div class="first-aid-card">
+                        <div class="first-aid-icon">🦴</div>
+                        <h3>Fractures</h3>
+                        <p>Bone fracture care</p>
+                        <button class="btn-primary" onclick="showFirstAidGuide('fractures')">View Guide</button>
+                    </div>
+                    <div class="first-aid-card">
+                        <div class="first-aid-icon">😵</div>
+                        <h3>Unconsciousness</h3>
+                        <p>Recovery position</p>
+                        <button class="btn-primary" onclick="showFirstAidGuide('unconscious')">View Guide</button>
                     </div>
                 </div>
             </div>
@@ -339,27 +401,132 @@
                     <h2>Health Education</h2>
                     <p>Educational materials and health awareness resources</p>
                 </div>
+                
+                <!-- Featured Section -->
+                <div class="featured-card">
+                    <div class="featured-content">
+                        <div class="featured-icon">📚</div>
+                        <div>
+                            <h3>Featured: Hand Hygiene Campaign</h3>
+                            <p>This week's focus: Promoting proper handwashing in your community</p>
+                            <button class="btn-secondary" onclick="joinCampaign('handwashing')">Join Campaign</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search and Filters -->
+                <div class="education-search">
+                    <input type="text" placeholder="Search health topics..." class="search-input" id="educationSearch">
+                    <div class="filters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="hygiene">Hygiene</button>
+                        <button class="filter-btn" data-category="maternal">Maternal</button>
+                        <button class="filter-btn" data-category="child">Child Health</button>
+                        <button class="filter-btn" data-category="nutrition">Nutrition</button>
+                    </div>
+                </div>
+
                 <div class="education-content">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Health Awareness Topics</h3>
-                        </div>
-                        <div class="card-content">
-                            <div class="topic-list">
-                                <div class="topic-item">
-                                    <h4>Maternal Health</h4>
-                                    <p>Pregnancy care and safe delivery practices</p>
-                                </div>
-                                <div class="topic-item">
-                                    <h4>Child Vaccination</h4>
-                                    <p>Immunization schedule and importance</p>
-                                </div>
-                                <div class="topic-item">
-                                    <h4>Hygiene Practices</h4>
-                                    <p>Personal and community hygiene</p>
-                                </div>
+                    <div class="topic-grid">
+                        <div class="topic-card" data-category="hygiene">
+                            <div class="topic-header">
+                                <span class="topic-emoji">🧼</span>
+                                <span class="topic-badge hygiene">Hygiene</span>
                             </div>
+                            <h4>Hand Hygiene & Sanitation</h4>
+                            <p>Learn proper handwashing techniques and importance of sanitation</p>
+                            <div class="topic-meta">
+                                <span class="read-time">5 min read</span>
+                                <span class="level basic">Basic</span>
+                            </div>
+                            <button class="btn-primary" onclick="openEducationTopic('hand-hygiene')">Read More</button>
                         </div>
+                        
+                        <div class="topic-card" data-category="maternal">
+                            <div class="topic-header">
+                                <span class="topic-emoji">🤱</span>
+                                <span class="topic-badge maternal">Maternal</span>
+                            </div>
+                            <h4>Maternal Health Care</h4>
+                            <p>Essential care during pregnancy and childbirth</p>
+                            <div class="topic-meta">
+                                <span class="read-time">8 min read</span>
+                                <span class="level intermediate">Intermediate</span>
+                            </div>
+                            <button class="btn-primary" onclick="openEducationTopic('maternal-health')">Read More</button>
+                        </div>
+                        
+                        <div class="topic-card" data-category="child">
+                            <div class="topic-header">
+                                <span class="topic-emoji">💉</span>
+                                <span class="topic-badge child">Child Health</span>
+                            </div>
+                            <h4>Child Vaccination Schedule</h4>
+                            <p>Complete immunization schedule for children</p>
+                            <div class="topic-meta">
+                                <span class="read-time">6 min read</span>
+                                <span class="level basic">Basic</span>
+                            </div>
+                            <button class="btn-primary" onclick="openEducationTopic('vaccination')">Read More</button>
+                        </div>
+                        
+                        <div class="topic-card" data-category="nutrition">
+                            <div class="topic-header">
+                                <span class="topic-emoji">🥬</span>
+                                <span class="topic-badge nutrition">Nutrition</span>
+                            </div>
+                            <h4>Nutrition & Malnutrition Prevention</h4>
+                            <p>Balanced diet and preventing malnutrition in families</p>
+                            <div class="topic-meta">
+                                <span class="read-time">7 min read</span>
+                                <span class="level intermediate">Intermediate</span>
+                            </div>
+                            <button class="btn-primary" onclick="openEducationTopic('nutrition')">Read More</button>
+                        </div>
+                        
+                        <div class="topic-card" data-category="hygiene">
+                            <div class="topic-header">
+                                <span class="topic-emoji">💧</span>
+                                <span class="topic-badge hygiene">Hygiene</span>
+                            </div>
+                            <h4>Water, Sanitation & Hygiene</h4>
+                            <p>Safe water practices and environmental sanitation</p>
+                            <div class="topic-meta">
+                                <span class="read-time">6 min read</span>
+                                <span class="level basic">Basic</span>
+                            </div>
+                            <button class="btn-primary" onclick="openEducationTopic('wash')">Read More</button>
+                        </div>
+                        
+                        <div class="topic-card" data-category="mental">
+                            <div class="topic-header">
+                                <span class="topic-emoji">🧠</span>
+                                <span class="topic-badge mental">Mental Health</span>
+                            </div>
+                            <h4>Mental Health & Wellness</h4>
+                            <p>Understanding and promoting mental wellbeing</p>
+                            <div class="topic-meta">
+                                <span class="read-time">8 min read</span>
+                                <span class="level intermediate">Intermediate</span>
+                            </div>
+                            <button class="btn-primary" onclick="openEducationTopic('mental-health')">Read More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics -->
+                <div class="education-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Educational Topics</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Community Members Educated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">Active Campaigns</div>
                     </div>
                 </div>
             </div>
@@ -406,8 +573,13 @@
             <!-- Appointments Page -->
             <div id="appointments" class="page">
                 <div class="page-header">
-                    <h2>Appointment Reminders</h2>
-                    <p>Schedule and manage patient appointments</p>
+                    <div>
+                        <h2>Appointment Reminders</h2>
+                        <p>Schedule and manage patient appointments</p>
+                    </div>
+                    <button class="btn-primary" onclick="scheduleAppointment()">
+                        <span>+</span> Schedule Appointment
+                    </button>
                 </div>
                 <div class="appointments-content">
                     <div class="card">
@@ -425,7 +597,29 @@
                                         <h4>Sita Devi</h4>
                                         <p>Pregnancy Checkup</p>
                                     </div>
-                                    <button class="btn-secondary">Complete</button>
+                                    <button class="btn-secondary" onclick="completeAppointment(1)">Complete</button>
+                                </div>
+                                <div class="appointment-item">
+                                    <div class="appointment-time">
+                                        <span class="time">2:00 PM</span>
+                                        <span class="date">Today</span>
+                                    </div>
+                                    <div class="appointment-info">
+                                        <h4>Ram Kumar</h4>
+                                        <p>Diabetes Follow-up</p>
+                                    </div>
+                                    <button class="btn-secondary" onclick="completeAppointment(2)">Complete</button>
+                                </div>
+                                <div class="appointment-item">
+                                    <div class="appointment-time">
+                                        <span class="time">9:00 AM</span>
+                                        <span class="date">Tomorrow</span>
+                                    </div>
+                                    <div class="appointment-info">
+                                        <h4>Meera Sharma</h4>
+                                        <p>Child Vaccination</p>
+                                    </div>
+                                    <button class="btn-secondary" onclick="rescheduleAppointment(3)">Reschedule</button>
                                 </div>
                             </div>
                         </div>
